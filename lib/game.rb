@@ -40,7 +40,7 @@ class Game
   end 
 
   def game_over?
-    @turn_count == 1000001 || @player1.has_lost? || @player2.has_lost?
+    @turn_count == 1000000 || @player1.has_lost? || @player2.has_lost?
   end
 
   def play_game
@@ -63,7 +63,7 @@ class Game
   end
 
   def end_game 
-    if @turn_count == 100000
+    if @turn_count == 1000000
       puts "---- DRAW ----"
     elsif @player1.has_lost? 
       puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
