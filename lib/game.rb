@@ -22,16 +22,12 @@ class Game
     start
   end 
 
-  end
-
   def start 
-    card_setup
     until game_over? do 
       play_game
     end 
     end_game
   end
-
 
   def card_setup(deck)
     all_cards = CardGenerator.new("cards.txt").cards
@@ -50,11 +46,11 @@ class Game
   def play_game
     turn = Turn.new(@player1, @player2)
     if turn.type == :mutually_assured_destruction
-      puts "Turn #{count}: *mutually assured destruction* 6 cards removed from play"
+      puts "Turn #{@turn_count + 1}: *mutually assured destruction* 6 cards removed from play"
     elsif turn.type == :war 
-      puts "Turn #{count}: WAR - #{turn.winner.name} won 6 cards"
+      puts "Turn #{@turn_count + 1}: WAR - #{turn.winner.name} won 6 cards"
     else
-      puts "Turn #{count}: #{turn.winner.name} won 2 cards"
+      puts "Turn #{@turn_count + 1}: #{turn.winner.name} won 2 cards"
     end
     if turn.type == :basic || turn.type == :war 
       winner = turn.winner 
@@ -67,7 +63,7 @@ class Game
   end
 
   def end_game 
-    if count == 1000001
+    if @turn_count == 100000
       puts "---- DRAW ----"
     elsif @player1.has_lost? 
       puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
